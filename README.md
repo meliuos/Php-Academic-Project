@@ -11,4 +11,3 @@ RentAway est une plateforme en ligne permettant aux utilisateurs de louer des lo
 - Système d'Authentification : Les utilisateurs peuvent créer des comptes et se connecter pour accéder à des fonctionnalités telles que la recherche de logements, la réservation, la gestion de leurs annonces, et la communication avec les propriétaires.
 - Tableau de Bord d'Administration : Les propriétaires de logements peuvent gérer leurs annonces, les disponibilités, les tarifs et les réservations via un tableau de bord intuitif.
 - Recherche Avancée : Les voyageurs peuvent rechercher des logements en fonction de critères tels que la destination, les dates de séjour, le nombre de voyageurs, les équipements, etc.
->>>>>>> origin/main
