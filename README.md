@@ -1,4 +1,3 @@
-=======
 # Php-Academic-Project
 
 Nom du Projet : RentAway
