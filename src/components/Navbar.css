@@ -1,0 +1,89 @@
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+    box-shadow: 0 1px 3px -2px #202020;
+    background-color: white;
+    flex-wrap: wrap;
+}
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.nav-logo p {
+    color: #171717;
+    font-size: 38px;
+    font-weight: 600;
+}
+.nav-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 50px;
+    color: #626262 ;
+    font-size: 20px;
+    font-weight: 500;
+}
+.nav-menu li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+}
+.nav-menu hr {
+    border: none;
+    width: 80%;
+    height: 3px;
+    border-radius:10px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    -ms-border-radius:10px;
+    -o-border-radius:10px;
+    background: black;
+}
+.links {
+    text-decoration: none;
+    color: #626262;
+}
+.log-in-out {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+    gap: 10px;
+}
+.log-in-out .in {
+    border: 1px solid black;
+    padding: 8px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    -webkit-transition: 0.2s ease-in-out;
+    -moz-transition: 0.2s ease-in-out;
+    -ms-transition: 0.2s ease-in-out;
+    -o-transition: 0.2s ease-in-out;
+}
+.log-in-out .in:hover{
+    background-color: #202020;
+    color: white;
+}
+.log-in-out .up {
+    background-color: black;
+    color: white;
+    border:1px solid rgb(255, 255, 255) ;
+    padding: 8px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    -webkit-transition: 0.2s ease-in-out;
+    -moz-transition: 0.2s ease-in-out;
+    -ms-transition: 0.2s ease-in-out;
+    -o-transition: 0.2s ease-in-out;
+}
+.log-in-out .up:hover{
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: 1px solid black;
+}
