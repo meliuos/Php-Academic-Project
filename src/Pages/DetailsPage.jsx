@@ -1,7 +1,9 @@
 import React from 'react'
-
-export const DetailsPage = () => {
+import Navbar from '../components/Navbar'
+export default function DetailsPage() {
   return (
-    <div>DetailsPage</div>
+    <div> 
+         details
+    </div>
   )
 }

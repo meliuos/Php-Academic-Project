@@ -1,17 +1,17 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Card from './Card';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Cards() {
-
+    const history = useNavigate();
     const handleCardClick = async (id) => {
         try {
             const response = await axios.get(`http://localhost/RentAway/getAppartById.php?id=${id}`);
             const apartment = response.data;
             console.log(response.data);
             // Redirect to details page with fetched data
-            window.location.href = `/details/${id}`;
+            history(`/details/${id}`);
         } catch (error) {
             console.error('Error fetching apartment details:', error);
         }
