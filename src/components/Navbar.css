@@ -33,17 +33,6 @@
     gap: 3px;
     cursor: pointer;
 }
-.nav-menu hr {
-    border: none;
-    width: 80%;
-    height: 3px;
-    border-radius:10px;
-    -webkit-border-radius:10px;
-    -moz-border-radius:10px;
-    -ms-border-radius:10px;
-    -o-border-radius:10px;
-    background: black;
-}
 .log-in-out {
     display: flex;
     justify-content: center;
@@ -55,6 +44,7 @@
 .log-in-out .in {
     border: 1px solid black;
     padding: 8px;
+    padding: 10px;
     cursor: pointer;
     transition: 0.2s ease-in-out;
     -webkit-transition: 0.2s ease-in-out;
@@ -71,6 +61,7 @@
     color: white;
     border:1px solid rgb(255, 255, 255) ;
     padding: 8px;
+    padding: 10px;
     cursor: pointer;
     transition: 0.2s ease-in-out;
     -webkit-transition: 0.2s ease-in-out;
