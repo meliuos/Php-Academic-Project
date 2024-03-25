@@ -10,6 +10,9 @@ export default function Navbar() {
             <div className="nav-logo">
                 <p>RentAway</p>
             </div>
+            <div className="rent">
+                <p>Rent your house</p>
+            </div>
             <div className='log-in-out'>
               <p className="in">Sign in</p>
               <p className="up">Sign Up</p>

@@ -6,6 +6,8 @@
     background-color: #ffffff;
     transition: transform 0.2s;
     margin-bottom: 20px;
+    width: 20rem;
+    cursor: pointer;
 }
 
 .card:hover {

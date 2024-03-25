@@ -1,5 +1,5 @@
 .hero {
-    background-image: url('../../pics/hero.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../pics/hero.jpg');
     background-size: cover;
     background-position: center;
     height: 90dvh;
@@ -7,7 +7,6 @@
     justify-content: center;
     align-items: center;
 }
-
 .hero-content {
     text-align: center;
     color: #fff;
@@ -23,7 +22,7 @@
     margin-bottom: 2rem;
 }
 
-.hero-content button {
+.hero-content a {
     padding: 0.8rem 2rem;
     font-size: 1.2rem;
     background-color: #262626;
@@ -31,9 +30,10 @@
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
+    text-decoration: none;
 }
 
-.hero-content button:hover {
+.hero-content a:hover {
     background-color: #ffffff;
     color: black;
 }

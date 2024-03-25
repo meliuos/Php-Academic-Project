@@ -1,10 +1,24 @@
 .navbar {
     display: flex;
     justify-content: space-around;
-    padding: 5px;
-    box-shadow: 0 1px 3px -2px #202020;
+    box-shadow: 0 1px 3px -2px #262626;
     background-color: white;
     flex-wrap: wrap;
+}
+.navbar div {
+    margin: 0px 20px;
+}
+.rent {
+    display: flex;
+    align-items: center;
+    color: #262626;
+    font-size: 25px;
+    gap:10px;
+}
+.rent p {
+    border: 1px solid #262626;
+    padding: 10px;
+    cursor: pointer;
 }
 .nav-logo {
     display: flex;
@@ -12,7 +26,7 @@
     gap: 10px;
 }
 .nav-logo p {
-    color: #171717;
+    color: #262626;
     font-size: 38px;
     font-weight: 600;
 }
@@ -40,9 +54,10 @@
     font-size: 20px;
     font-weight: 500;
     gap: 10px;
+    flex-wrap: wrap;
 }
 .log-in-out .in {
-    border: 1px solid black;
+    border: 1px solid #262626;
     padding: 8px;
     padding: 10px;
     cursor: pointer;
@@ -52,12 +67,8 @@
     -ms-transition: 0.2s ease-in-out;
     -o-transition: 0.2s ease-in-out;
 }
-.log-in-out .in:hover{
-    background-color: #202020;
-    color: white;
-}
 .log-in-out .up {
-    background-color: black;
+    background-color: #262626;
     color: white;
     border:1px solid rgb(255, 255, 255) ;
     padding: 8px;
@@ -68,9 +79,4 @@
     -moz-transition: 0.2s ease-in-out;
     -ms-transition: 0.2s ease-in-out;
     -o-transition: 0.2s ease-in-out;
-}
-.log-in-out .up:hover{
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    border: 1px solid black;
 }

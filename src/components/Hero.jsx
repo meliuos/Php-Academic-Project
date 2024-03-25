@@ -6,7 +6,7 @@ export default function Hero() {
             <div className="hero-content">
                 <h1>Find Your Dream Apartment</h1>
                 <p>Discover the perfect place to call home</p>
-                <button>Explore Now</button>
+                <a href="#cards-list">Explore Now</a>
             </div>
         </div>
     )
