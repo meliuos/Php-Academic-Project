@@ -44,10 +44,6 @@
     -o-border-radius:10px;
     background: black;
 }
-.links {
-    text-decoration: none;
-    color: #626262;
-}
 .log-in-out {
     display: flex;
     justify-content: center;
