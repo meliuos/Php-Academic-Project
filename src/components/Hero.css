@@ -25,8 +25,8 @@
 .hero-content a {
     padding: 0.8rem 2rem;
     font-size: 1.2rem;
-    background-color: #262626;
-    color: #fff;
+    background-color: #fff;
+    color: #262626;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -34,6 +34,6 @@
 }
 
 .hero-content a:hover {
-    background-color: #ffffff;
-    color: black;
+    background-color: #262626;
+    color: white;
 }
