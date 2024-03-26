@@ -8,7 +8,7 @@ export default function Navbar() {
     return (
         <div className='navbar'>
             <div className="nav-logo">
-                <p>RentAway</p>
+                <Link to="/" style={{ textDecoration: 'none' }}><p>RentAway</p></Link>
             </div>
             <div className="rent">
                 <p>Rent your house</p>
