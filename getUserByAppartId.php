@@ -6,7 +6,7 @@ include_once "ConnexionDb.php";
     try {
      // Create a new PDO instance
     $conn =ConnexionBD::getInstance();
-    $sql = "SELECT * FROM apparts WHERE id = ?";
+    $sql = "SELECT * FROM apparts JOIN users ON apparts.mail = users.mail WHERE apparts.id= ?";
     $stmt = $conn->prepare($sql);
     $stmt->execute(array($id));
     //Fetch the result

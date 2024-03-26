@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom'; // Import useParams
+import { useParams } from 'react-router-dom'; 
+import './DetailsPage.css'; 
+import { useNavigate } from 'react-router-dom';
 
 export default function DetailsPage() {
     const { id } = useParams();
-
+    const history = useNavigate();
     const [details, setDetails] = useState(null);
-
+    // Fetch apartment details by ID
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -16,25 +18,32 @@ export default function DetailsPage() {
                 console.error('Error fetching details:', error);
             }
         };
-
         fetchData();
     }, [id]); // Fetch data when ID changes
 
+    const contactViaEmail = () => {
+        try {
+            history(`/details/contact/${id}`);
+        } catch (error) {
+            console.error('Error fetching apartment details:', error);
+        }
+    };
+
     return (
-      <div>
-        {details ? (
-          <div> 
-            <img src={details.coverImg} alt={details.title} style={{ width: '100%' }} />
-            <h2>{details.title}</h2>
-            <p>{details.description}</p>
-            <p>Price: {details.price} €/night</p>
-            <a href="mailto:*****" ><button>Contact via Email</button></a>
-          </div>
-        ) : (
-          <p>Loading...</p>
-        )}
-      </div>
+        <div className="container">
+            {details ? (
+                <div> 
+                    <img src={details.coverImg} alt={details.title} className="image" />
+                    <h2 className="title">{details.title}</h2>
+                    <p className="description">{details.description}</p>
+                    <p className="price">Price: {details.price} €/night</p>
+                    <div className="button-container">
+                        <button className="button" onClick={contactViaEmail}>Contact via Email</button>
+                    </div>
+                </div>
+            ) : (
+                <p>Loading...</p>
+            )}
+        </div>
     );
 }
-
-
