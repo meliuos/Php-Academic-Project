@@ -34,9 +34,10 @@ export default function SignInPopup(auth) {
                         <input type="text" name="mail" placeholder="Email" className="form-input" />
                         <input type="password" name="password" placeholder="Password" className="form-input" />
                         <button type="submit" className="form-submit">Sign In</button>
+                        <button onClick={closePopup}>Close</button>
                     </form>
                         
-                    <button onClick={closePopup}>Close</button>
+                    
                 </div>
             )}
         </div>
