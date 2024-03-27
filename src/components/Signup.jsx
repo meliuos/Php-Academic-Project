@@ -1,62 +1,54 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import './Signup.css';
+import './SignIn.css';
+export default function SignUpForm () {
+  const [response, setResponse] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const openPopup = () => {
+      setIsOpen(true);
+  };
 
-export default function Signup() {
-    const [showForm, setShowForm] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
+  const closePopup = () => {
+      setIsOpen(false);
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    try {
+      const response = await fetch('http://localhost/RentAway/SignUp.php', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await response.text();
+      if (data === '1') {
+       alert('User created successfully');
+       closePopup();
+      }
+      else {
+        setResponse(data);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
-    const handleSignupClick = () => {
-        setShowForm(true);
-    };
-
-    const closePopup = () => {
-        setShowForm(false);
-    };
-
-    const handleFormSubmit = async (e) => {
-        e.preventDefault();
-
-        const email = e.target.elements.email.value;
-        const password = e.target.elements.password.value;
-        // Basic client-side validation
-        if (!email || !password) {
-            setErrorMessage('Please fill out all fields');
-            return;
-        }
-
-        try {
-            const response = await axios.post('http://localhost/RentAway/SignUp.php', 
-            { email, password },
-            { headers: { 'Content-Type': 'application/json' } } 
-            );
-            console.log(response.data);
-            if (response.data.message) {
-                alert(response.data.message);
-                closePopup();
-            } else if (response.data.error) {
-                setErrorMessage(response.data.error);
-            }
-        } catch (error) {
-            setErrorMessage('An error occurred while registering');
-        }
-    };
-
-    return (
+  return (
         <div>
-            <button onClick={handleSignupClick} className="up">Sign Up</button>
-            {showForm && (
-                <div className="popup">
-                    <form method='POST' action='http://localhost/RentAway/SignUp.php'>
-                        <h2>Sign Up</h2>
-                        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-                        <input type="email" name="email" placeholder="Email" className="form-input" required />
-                        <input type="password" name="password" placeholder="Password" className="form-input" required />
-                        <button type="submit" className="form-submit">Submit</button>
-                        <button type="button" onClick={closePopup}>Close</button>
-                    </form>
-                </div>
-            )}
-        </div>
-    );
-}
+      <button  className='in' onClick={openPopup}>Sign Up</button>
+      
+      {isOpen && <div className="popup">
+      <h2>Sign Up</h2>
+      <form onSubmit={handleSubmit}>
+        <label>Email:</label><br />
+        <input type="email" name="email" className="form-input" required /><br />
+        <label>Password:</label><br />
+        <input type="password" name="password" className="form-input" required /><br /><br />
+        <button type="submit">Submit</button>
+        <button onClick={closePopup}>Close</button>
+      </form>
+      {response && (
+        <p>{response}</p>
+      )}
+    </div>}
+    </div>
+  );
+};

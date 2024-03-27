@@ -20,6 +20,12 @@ function App() {
                     } />
                     <Route path="/details/:id" element={<DetailsPage />} />
                     <Route path="/details/contact/:id" element={<Contact />} />
+                    <Route path="/:auth" element={
+                    <React.Fragment>
+                    <Hero />
+                    <Cards />
+                </React.Fragment>
+                    } />
                 </Routes>
             </div>
         </Router>

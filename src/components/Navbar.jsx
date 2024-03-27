@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from 'react-router-dom'
 import './Navbar.css'
-import Signup from "./Signup.jsx";
+import SignUpForm from "./Signup.jsx";
 import SignInPopup from "./SignIn.jsx";
 export default function Navbar() {
     return (
@@ -14,7 +14,7 @@ export default function Navbar() {
             </div>
             <div className='log-in-out'>
               <SignInPopup />
-              <Signup/>
+              <SignUpForm/>
             </div>
             
         </div>
