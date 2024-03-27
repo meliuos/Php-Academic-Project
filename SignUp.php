@@ -1,37 +1,38 @@
 <?php
+include_once "header.php";
+include_once "ConnexionDb.php";
+
 session_start();
-// Database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "rentaway"; 
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['email']) && isset($_POST['password'])) {
+    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    if (!empty($email) && !empty($password)) {
+        $conn = ConnexionBD::getInstance();
 
-// Get the form data
-$email = $_POST['email'];
-$password = $_POST['password'];
+        $sql = "SELECT * FROM users WHERE mail = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(array($email));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Check if the email already exists
-$sql = "SELECT * FROM users WHERE email = '$email'";
-$result = $conn->query($sql);
+        if ($result) {
+            echo json_encode(array("error" => "Email already exists"));
+        } else {
+            $sql = "INSERT INTO users (mail, password) VALUES (?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(array($email, $password));
 
-if ($result->num_rows > 0) {
-    echo json_encode(array("error" => "Email already exists"));
-} else {
-    // Insert the data into the database
-    $sql = "INSERT INTO users (email, password) VALUES ('$email', '$password')";
-    
-    if ($conn->query($sql) === TRUE) {
-        echo json_encode(array("message" => "Successfully registered"));
+            if ($stmt->rowCount() > 0) {
+                echo json_encode(array("message" => "Successfully registered"));
+            } else {
+                echo json_encode(array("error" => "Error registering user"));
+            }
+        }
     } else {
-        echo json_encode(array("error" => "Error: " . $sql . "<br>" . $conn->error));
+        echo json_encode(array("error" => "Incomplete form data"));
     }
+} else {
+    echo json_encode(array("error" => "Invalid request method"));
 }
-
-$conn->close();
 ?>

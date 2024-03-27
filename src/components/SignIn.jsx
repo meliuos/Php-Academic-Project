@@ -15,7 +15,7 @@ export default function SignInPopup(auth) {
     };
     const handleLogin = async () => {
         try {
-          const response = await axios.post('login.php', { username, password });
+          const response = await axios.post('LogIn.php', { username, password });
           console.log(response.data);
           // Handle success
         } catch (error) {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';  // Import axios
-import './Signup.css'; 
+import axios from 'axios';
+import './Signup.css';
 
 export default function Signup() {
     const [showForm, setShowForm] = useState(false);
@@ -16,14 +16,21 @@ export default function Signup() {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        
+
         const email = e.target.elements.email.value;
         const password = e.target.elements.password.value;
+        // Basic client-side validation
+        if (!email || !password) {
+            setErrorMessage('Please fill out all fields');
+            return;
+        }
 
         try {
-            // Make an API call to register the user
-            const response = await axios.post('signUp.php', { email, password });
-
+            const response = await axios.post('http://localhost/RentAway/SignUp.php', 
+            { email, password },
+            { headers: { 'Content-Type': 'application/json' } } 
+            );
+            console.log(response.data);
             if (response.data.message) {
                 alert(response.data.message);
                 closePopup();
@@ -31,11 +38,7 @@ export default function Signup() {
                 setErrorMessage(response.data.error);
             }
         } catch (error) {
-            if (error.response && error.response.data && error.response.data.error) {
-                setErrorMessage(error.response.data.error);
-            } else {
-                setErrorMessage('An error occurred while registering');
-            }
+            setErrorMessage('An error occurred while registering');
         }
     };
 
@@ -44,7 +47,7 @@ export default function Signup() {
             <button onClick={handleSignupClick} className="up">Sign Up</button>
             {showForm && (
                 <div className="popup">
-                    <form onSubmit={handleFormSubmit}>
+                    <form method='POST' action='http://localhost/RentAway/SignUp.php'>
                         <h2>Sign Up</h2>
                         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
                         <input type="email" name="email" placeholder="Email" className="form-input" required />
