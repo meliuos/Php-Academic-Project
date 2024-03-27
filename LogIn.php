@@ -6,8 +6,10 @@ session_start();
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    var_dump($_POST);
+
     // Get username and password from the form
-    $mail = $_POST["mail"];
+    $mail = $_POST["email"];
     $password = $_POST["password"];
     try {
         $conn = ConnexionBD::getInstance();
