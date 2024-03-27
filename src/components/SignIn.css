@@ -3,10 +3,10 @@
     top: 50%;
     left: 50%;
     height: 50dvh;
-    width: 300pxa;
+    width: 300px;
     transform: translate(-50%, -50%);
-    background-color: white;
     padding: 20px;
+    background-color: white;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     z-index: 9999; /* Ensure it appears above other content */
@@ -38,4 +38,3 @@
   .popup button:hover {
     background-color: #0056b3;
   }
-  

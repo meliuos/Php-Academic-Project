@@ -33,7 +33,7 @@ export default function SignUpForm () {
 
   return (
         <div>
-      <button  className='in' onClick={openPopup}>Sign Up</button>
+      <button  className='up' onClick={openPopup}>Sign Up</button>
       
       {isOpen && <div className="popup">
       <h2>Sign Up</h2>
@@ -46,7 +46,7 @@ export default function SignUpForm () {
         <button onClick={closePopup}>Close</button>
       </form>
       {response && (
-        <p>{response}</p>
+        <p className='response'>{response}</p>
       )}
     </div>}
     </div>

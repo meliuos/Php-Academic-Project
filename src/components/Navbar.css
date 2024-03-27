@@ -58,6 +58,7 @@
 }
 .log-in-out .in {
     border: 1px solid #262626;
+    background-color: white;
     padding: 8px;
     padding: 10px;
     cursor: pointer;
@@ -79,4 +80,7 @@
     -moz-transition: 0.2s ease-in-out;
     -ms-transition: 0.2s ease-in-out;
     -o-transition: 0.2s ease-in-out;
+}
+.response {
+    color: red;
 }
