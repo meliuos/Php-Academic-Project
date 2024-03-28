@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import './SignIn.css';
+import { useNavigate } from 'react-router-dom';
 
-export default function SignInPopup() {
+export default function SignInPopup({ onLoginSuccess }) {
+    const navigate = useNavigate();
     const [response, setResponse] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
     const openPopup = () => {
@@ -22,7 +23,7 @@ export default function SignInPopup() {
           });
           const data = await response.text();
           if (data === '1') {
-           
+            onLoginSuccess();
            closePopup();
           }
           else {
@@ -35,10 +36,10 @@ export default function SignInPopup() {
 
       return (
         <div>
-      <button  className='in' onClick={openPopup}>Sign In</button>
+      <button  className='in' onClick={openPopup}>Log in</button>
       
       {isOpen && <div className="popup">
-      <h2>Sign Up</h2>
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <label>Email:</label><br />
         <input type="email" name="email" className="form-input" required /><br />

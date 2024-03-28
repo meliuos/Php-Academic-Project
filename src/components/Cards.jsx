@@ -20,7 +20,6 @@ export default function Cards() {
     if (cardElement) {
         // Extract the id from the card's data attribute or any other identifier
         const id = cardElement.id;
-        console.log(id);
         // Call handleCardClick with the id
         handleCardClick(id);
     }

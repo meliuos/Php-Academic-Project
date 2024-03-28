@@ -1,6 +1,7 @@
 <?php
+include "header.php";
 session_start();
-if (isset($_SESSION['mail'])) {
+if (isset($_SESSION['email'])) {
     echo json_encode(["success" => true, "message" => "Logged in successful"]);
 }
 else {

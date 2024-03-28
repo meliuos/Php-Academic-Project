@@ -10,16 +10,26 @@ function App() {
     return (
         <Router>
             <div>
-                <Navbar />
                 <Routes>
                     <Route path="/" element={
                         <React.Fragment>
+                            <Navbar/>
                             <Hero />
                             <Cards />
                         </React.Fragment>
                     } />
-                    <Route path="/details/:id" element={<DetailsPage />} />
-                    <Route path="/details/contact/:id" element={<Contact />} />
+                    <Route path="/details/:id" element={
+                        <>
+                        <Navbar/>
+                        <DetailsPage />
+                        </>
+                    } />
+                    <Route path="/details/contact/:id" element={
+                    <>
+                     <Navbar/>
+                     <Contact />
+                    </>
+                    } />
                 </Routes>
             </div>
         </Router>
