@@ -5,7 +5,8 @@ import DetailsPage from './Pages/DetailsPage';
 import Cards from './components/Cards';
 import Hero from './components/Hero';
 import Contact from './Pages/Contact';
-
+import UserDashboard from './components/userDashboard';
+import Post from './components/Post';
 function App() {
     return (
         <Router>
@@ -30,6 +31,20 @@ function App() {
                      <Contact />
                     </>
                     } />
+                    <Route path="/dashboard" element={
+                    <>
+                     <Navbar/>
+                     <UserDashboard />
+                     </>
+                    } />
+                    <Route path="/post" element={
+                    <>
+                     <Navbar/>
+                     <Post />
+                     </>
+                    } />
+                    { <Route path="*" element={<h1>Not Found</h1>} />
+                    }
                 </Routes>
             </div>
         </Router>

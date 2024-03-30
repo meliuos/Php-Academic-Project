@@ -5,6 +5,8 @@ import SignUpForm from "./Signup.jsx";
 import SignInPopup from "./SignIn.jsx";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import UserDashboard from "./userDashboard.jsx";
+import PostAuth from "./PostAuth.jsx";
 
 
 export default function Navbar() {
@@ -28,7 +30,6 @@ export default function Navbar() {
         const handleLogout = async () => {
             try {
                 const response = await axios.get("http://localhost/RentAway/logout.php");
-                console.log(response.data.success);
                 if (response.data.success) {
                     setAuth(false);
                     navigate('/', { replace: true }); // Redirect to main page
@@ -43,12 +44,12 @@ export default function Navbar() {
             <Link to="/" style={{ textDecoration: 'none' }}><p>RentAway</p></Link>
         </div>
         <div className="rent">
-            <p>Rent your house</p>
+            <PostAuth onLoginSuccess={handleLoginSuccess}/>
         </div>
         <div className='log-in-out'>
           {!auth && <SignInPopup onLoginSuccess={handleLoginSuccess}/>}
           {!auth && <SignUpForm />}
-          {auth && "Manage Your posts"}
+          {auth && <Link to="/dashboard"><button className="in">Manage your posts</button></Link>  }
           {auth && <button className="up" onClick={handleLogout}>Logout</button>}
         </div>  
     </div>
