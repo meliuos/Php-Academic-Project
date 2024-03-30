@@ -15,7 +15,8 @@
     font-size: 25px;
     gap:10px;
 }
-.rent p {
+.rent button {
+    background-color: white;
     border: 1px solid #262626;
     padding: 10px;
     cursor: pointer;
