@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import './Post.css';
 
 export default function Post() {
     const [houseDetails, setHouseDetails] = useState({
@@ -37,6 +38,8 @@ export default function Post() {
     };
 
     return (
+        <div  className='post'> 
+        <h2 >Please Enter the informations below:</h2>
         <form onSubmit={handleSubmit}>
             <label>
                 title:
@@ -54,7 +57,7 @@ export default function Post() {
             </label>
             <br />
             <label>
-                coverImg:
+                coverImgURL:
                 <input type="text" name="coverImg" value={houseDetails.coverImg} onChange={handleChange} />
             </label>
             <br />
@@ -62,11 +65,14 @@ export default function Post() {
                 location:
                 <input type="text" name="location" value={houseDetails.location} onChange={handleChange} />
             </label>
+            <br />
             <label>
                 openSpots:
                 <input type="number" name="openSpots" value={houseDetails.openSpots} onChange={handleChange} />
             </label>
-            <button type="submit">Submit</button>
-        </form> // the rating and the review count should be random in apparts table and the id auto incremented
+            <button className='sub' type="submit">Submit</button>
+        </form> 
+        </div>
     );
 }
+// the rating and the review count should be random in apparts table and the id auto incremented
