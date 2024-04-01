@@ -1,6 +1,7 @@
 <?php
 include "header.php";
 include_once "ConnexionDb.php";
+
 $id=$_GET['id'];
 if(isset($id)){
 try {

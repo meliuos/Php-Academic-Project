@@ -47,9 +47,7 @@ export default function UserDashboard() {
             });
             const result = await response.json();
             console.log(result);
-            // Refetch data or update the specific item in the data array
             fetchData();
-            // Remove index from edit mode
             setEditIndices(editIndices.filter(i => i !== index));
             setEditedData({});
             navigate('/');
