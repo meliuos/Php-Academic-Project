@@ -28,8 +28,9 @@ export default function Post() {
             method: 'POST',
             body: formData
         });
-        const data = await response.text();
-        if (data === '1') {
+        const data = await response.json();
+        console.log(data);
+        if (data.success) {
         alert('Offer created successfully');
         }
         } catch (error) {
@@ -39,7 +40,10 @@ export default function Post() {
 
     return (
         <div  className='post'> 
+        <div>
         <h2 >Please Enter the informations below:</h2>
+        </div>
+        <div>
         <form onSubmit={handleSubmit}>
             <label>
                 title:
@@ -71,7 +75,9 @@ export default function Post() {
                 <input type="number" name="openSpots" value={houseDetails.openSpots} onChange={handleChange} />
             </label>
             <button className='sub' type="submit">Submit</button>
-        </form> 
+        </form>
+        </div>
+         
         </div>
     );
 }

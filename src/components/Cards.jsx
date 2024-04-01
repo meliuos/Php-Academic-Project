@@ -29,7 +29,9 @@ export default function Cards() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost/RentAway/getData.php')
+        axios.get('http://localhost/RentAway/getData.php',{
+            withCredentials: true,
+          })
             .then(response => {
                 response.data.forEach(element => {
                     setData(response.data);

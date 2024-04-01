@@ -1,6 +1,6 @@
 <?php
 include "header.php";
-include "isAuthenticated.php";
+session_start();
 if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1){
     echo json_encode(["success" => true, "message" => "You are an admin"]);
 }

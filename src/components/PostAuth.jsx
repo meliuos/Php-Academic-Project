@@ -2,25 +2,29 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginPopup from './LoginPopup.jsx';
 
-export default function PostAuth({onLoginSuccess}) {
+export default function PostAuth({ onLoginSuccess }) {
     const navigate = useNavigate();
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('user') && sessionStorage.getItem('user').success);
     const [showSignInPopup, setShowSignInPopup] = useState(false);
+    const [loginAttempted, setLoginAttempted] = useState(false); 
 
     const handleRent = () => {
         if (isLoggedIn) {
-            onLoginSuccess();
             navigate('/post');
         } else {
-            setShowSignInPopup(true); // Show the login popup
+            setLoginAttempted(true); 
+            setShowSignInPopup(true);
         }
     }
-
     const handleLoginSuccess = () => {
         setIsLoggedIn(true);
         setShowSignInPopup(false);
         onLoginSuccess();
-        navigate('/post');
+        navigate('/post');  
+    };
+
+    const handleLoginCancel = () => {
+        setShowSignInPopup(false);
     };
 
     return (
@@ -28,7 +32,7 @@ export default function PostAuth({onLoginSuccess}) {
             <button onClick={handleRent}>
                 Rent your house
             </button>
-            <LoginPopup isOpen={!isLoggedIn && showSignInPopup} onLoginSuccess={handleLoginSuccess} />
+            <LoginPopup isOpen={!isLoggedIn && showSignInPopup} onLoginSuccess={handleLoginSuccess} onCancel={handleLoginCancel} />
         </div>
     )
 }

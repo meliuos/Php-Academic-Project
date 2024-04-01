@@ -6,7 +6,7 @@ session_start();
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"]) && isset($_POST["password"])){
-    // Get username and password from the form
+    // Get Email and password from the form
     $mail = $_POST["email"];
     $password = $_POST["password"];
     try {
@@ -17,17 +17,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"]) && isset($_PO
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
     }
     catch (PDOException $e){
-        echo "Connection failed: " . $e->getMessage();
+        echo json_encode(["success" => false,"message" => "Try again Later"]);
     }
     // Validate username and password
     if ( $user) {
-        // Authentication successful
-        $_SESSION["email"] = $mail;
         $_SESSION["isAdmin"]=$user["admin"];
-        echo "1";
+        echo json_encode(["success" => True, "email" => $mail ,"isAdmin" => $user["admin"]]);
     } else {
         // Authentication failed
-        echo "Invalid E-mail or password";
+        echo json_encode(["success" => false,"message" => "User exists with the same Email"]);
     }
 }
 ?>

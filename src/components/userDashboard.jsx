@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import "./userDashboard.css";
+import { useNavigate } from 'react-router-dom';
 
 export default function UserDashboard() {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [editIndex, setEditIndex] = useState(-1);
     const [editedData, setEditedData] = useState({});
-
+    const [editIndices, setEditIndices] = useState([]);
+    const navigate = useNavigate();
     const fetchData = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost/RentAway/getDataByEmail.php'); 
+            const user = JSON.parse(sessionStorage.getItem('user'));
+            const response = await fetch('http://localhost/RentAway/getDataByEmail.php',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: user.email }),
+            }); 
             const jsonData = await response.json();
-            console.log(jsonData);
             setData(jsonData);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -25,20 +34,25 @@ export default function UserDashboard() {
         setEditedData(data[index]);
     };
 
-    const handleSave = async () => {
+    const handleSave = async (index) => {
         try {
+            const user = JSON.parse(sessionStorage.getItem('user'));
+            console.log(user.email);
             const response = await fetch('http://localhost/RentAway/saveEditedData.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(editedData),
+                body: JSON.stringify({ ...editedData, email: user.email }),
             });
             const result = await response.json();
             console.log(result);
+            // Refetch data or update the specific item in the data array
             fetchData();
-            setEditIndex(-1);
+            // Remove index from edit mode
+            setEditIndices(editIndices.filter(i => i !== index));
             setEditedData({});
+            navigate('/');
         } catch (error) {
             console.error('Error saving data:', error);
         }
@@ -48,9 +62,11 @@ export default function UserDashboard() {
         const { name, value } = e.target;
         setEditedData({ ...editedData, [name]: value });
     };
+
     useEffect(() => {
         fetchData(); 
     }, []);
+
     return (
         <div>
 

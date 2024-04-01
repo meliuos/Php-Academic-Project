@@ -8,18 +8,24 @@ export default function LoginPopup(props) {
         try {
             let data = await fetch('http://localhost/RentAway/LogIn.php', {
                 method: 'POST',
-                body: formData
+                body: formData,
+                credentials: 'include'
             });
-            data = await data.text();
-            if (data === '1') {
+            data = await data.json();
+            if (data.success) {
+                sessionStorage.setItem('user', JSON.stringify(data));
                 props.onLoginSuccess();
                 props.closePopup();
             } else {
-                setResponse(data);
+                setResponse(data.message);
             }
         } catch (error) {
             setResponse('Error occurred. Please try again later.');
         }
+    };
+
+    const handleCancel = () => {
+        props.onCancel();
     };
 
     return (
@@ -33,7 +39,7 @@ export default function LoginPopup(props) {
                         <label>Password:</label><br />
                         <input type="password" name="password" className="form-input" required /><br /><br />
                         <button type="submit">Submit</button>
-                        <button onClick={props.closePopup}>Close</button>
+                        <button type="button" onClick={handleCancel}>Close</button> {/* Changed to type="button" */}
                     </form>
                     {response && (
                         <p className='response'>{response}</p>
