@@ -7,6 +7,8 @@ import Hero from './components/Hero';
 import Contact from './Pages/Contact';
 import UserDashboard from './components/userDashboard';
 import Post from './components/Post';
+import Admin from './Pages/Admin';
+
 function App() {
     return (
         <Router>
@@ -41,6 +43,12 @@ function App() {
                     <>
                      <Navbar/>
                      <Post />
+                     </>
+                    } />
+                    <Route path="/admin" element={
+                    <>
+                     <Navbar/>
+                     <Admin/>
                      </>
                     } />
                     { <Route path="*" element={<h1>Not Found</h1>} />

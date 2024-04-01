@@ -9,15 +9,19 @@ import PostAuth from "./PostAuth.jsx";
 
 export default function Navbar() {
     const [auth, setAuth] = React.useState(false);
+    const [admin, setAdmin] = React.useState(false);
     useEffect(() => {
         const sessionData = JSON.parse(sessionStorage.getItem('user'));
         if (sessionData && sessionData.success) {
             setAuth(true);
         }
+        if(sessionData && sessionData.isAdmin){
+            setAdmin(true);
+        }
     }, []);
     const navigate = useNavigate();
     const handleLoginSuccess = () => {
-            setAuth(true); // Update auth state when login is successful
+            setAuth(true); 
     };
     const handleLogout = async () => {
         sessionStorage.clear();
@@ -35,6 +39,7 @@ export default function Navbar() {
         <div className='log-in-out'>
           {!auth && <SignInPopup onLoginSuccess={handleLoginSuccess}/>}
           {!auth && <SignUpForm />}
+          {admin==="1" && <Link to="/admin"><button className="in">Manage users</button></Link>}
           {auth && <Link to="/dashboard"><button className="in">Manage your posts</button></Link>  }
           {auth && <button className="up" onClick={handleLogout}>Logout</button>}
         </div>  

@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginPopup from './LoginPopup.jsx';
 
 export default function PostAuth({ onLoginSuccess }) {
     const navigate = useNavigate();
+    console.log(sessionStorage.getItem('user')["success"]);
     const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('user') && sessionStorage.getItem('user').success);
-    const [showSignInPopup, setShowSignInPopup] = useState(false);
+    const [showSignInPopup, setShowSignInPopup] = useState(sessionStorage.getItem('user') && !sessionStorage.getItem('user').success);
     const [loginAttempted, setLoginAttempted] = useState(false); 
 
     const handleRent = () => {
@@ -26,7 +27,11 @@ export default function PostAuth({ onLoginSuccess }) {
     const handleLoginCancel = () => {
         setShowSignInPopup(false);
     };
-
+    useEffect(() => {
+        if (isLoggedIn) {
+            setShowSignInPopup(false);
+        }
+    },[isLoggedIn]);
     return (
         <div>
             <button onClick={handleRent}>
