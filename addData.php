@@ -1,19 +1,26 @@
 <?php
 include "header.php";
 include_once "ConnexionDb.php";
-session_start();
-if(isset($_SESSION["email"])){
+
+if($_SERVER['REQUEST_METHOD']==="POST"){
     try{
+        $json_data = file_get_contents('php://input');
+        if(empty($json_data)){
+            echo json_encode(["success" => false, "message" => "No data received"]);
+            exit();
+        }
+        $data = json_decode($json_data, true);  
         $conn = ConnexionBD::getInstance();
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO apparts (mail, title, description, price, coverImg) VALUES (:email, :title, :description, :price, :location, :image)";
+        $sql = "INSERT INTO apparts (mail, title, description, price,location, coverImg,openSpots) VALUES (:email, :title, :description, :price, :location, :image,:openSpots)";
         $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':email', $_POST['email']);
-        $stmt->bindParam(':title', $_POST['title']);
-        $stmt->bindParam(':description', $_POST['description']);
-        $stmt->bindParam(':price', $_POST['price']);
-        $stmt->bindParam(':location', $_POST['location']);
-        $stmt->bindParam(':image', $_POST['image']);
+        $stmt->bindParam(':email', $data['email']);
+        $stmt->bindParam(':title', $data['title']);
+        $stmt->bindParam(':description', $data['description']);
+        $stmt->bindParam(':price', $data['price']);
+        $stmt->bindParam(':location', $data['location']);
+        $stmt->bindParam(':image', $data['coverImg']);
+        $stmt->bindParam(':openSpots', $data['openSpots']);
         $stmt->execute();
         if($stmt->rowCount() == 0){
             echo json_encode(["success" => false, "message" => "Data not added"]);

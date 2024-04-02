@@ -15,10 +15,10 @@ export default function Navbar() {
         if (sessionData && sessionData.success) {
             setAuth(true);
         }
-        if(sessionData && sessionData.isAdmin){
+        if(sessionData && sessionData.isAdmin==="1"){
             setAdmin(true);
         }
-    }, []);
+    }, [auth,admin]);
     const navigate = useNavigate();
     const handleLoginSuccess = () => {
             setAuth(true); 
@@ -26,6 +26,7 @@ export default function Navbar() {
     const handleLogout = async () => {
         sessionStorage.clear();
         setAuth(false);
+        setAdmin(false);
         navigate('/');}
         ;
     return (
@@ -39,7 +40,7 @@ export default function Navbar() {
         <div className='log-in-out'>
           {!auth && <SignInPopup onLoginSuccess={handleLoginSuccess}/>}
           {!auth && <SignUpForm />}
-          {admin==="1" && <Link to="/admin"><button className="in">Manage users</button></Link>}
+          {admin && <Link to="/admin"><button className="in">Manage users</button></Link>}
           {auth && <Link to="/dashboard"><button className="in">Manage your posts</button></Link>  }
           {auth && <button className="up" onClick={handleLogout}>Logout</button>}
         </div>  

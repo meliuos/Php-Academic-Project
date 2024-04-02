@@ -4,10 +4,15 @@ import LoginPopup from './LoginPopup.jsx';
 
 export default function PostAuth({ onLoginSuccess }) {
     const navigate = useNavigate();
-    console.log(sessionStorage.getItem('user')["success"]);
-    const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('user') && sessionStorage.getItem('user').success);
-    const [showSignInPopup, setShowSignInPopup] = useState(sessionStorage.getItem('user') && !sessionStorage.getItem('user').success);
+    const session = JSON.parse(sessionStorage.getItem('user'));
+    const [isLoggedIn, setIsLoggedIn] = useState(session && session.success);
+    const [showSignInPopup, setShowSignInPopup] = useState(session && !session.success);
     const [loginAttempted, setLoginAttempted] = useState(false); 
+
+    useEffect(() => {
+        console.log("Isloggedin",isLoggedIn);
+        setIsLoggedIn(session && session.success);
+    }, [isLoggedIn,loginAttempted]);
 
     const handleRent = () => {
         if (isLoggedIn) {
