@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import Card from './Card';
 import { useNavigate } from 'react-router-dom';
 
-export default function Cards() {
+export default function Cards({admin}) {
     const history = useNavigate();
-    
+
     const handleCardClick = (id) => {
         try {
             history(`/details/${id}`);
@@ -15,12 +15,9 @@ export default function Cards() {
     };
 
     const handleSectionClick = (event) => {
-        // Check if the click event occurred on a card or its children
     const cardElement = event.target.closest('.card');
     if (cardElement) {
-        // Extract the id from the card's data attribute or any other identifier
         const id = cardElement.id;
-        // Call handleCardClick with the id
         handleCardClick(id);
     }
     };
@@ -41,12 +38,25 @@ export default function Cards() {
                 console.error('Error fetching data:', error);
             });
     }, []);
+
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`http://localhost/RentAway/deleteData.php?id=${id}`);
+            setData(data.filter(item => item.id !== id));
+        } catch (error) {
+            console.error('Error deleting data:', error);
+        }
+    };
   const cards = data.map(item => {
     return (
+        <div>
         <Card
             key={item.id}
             {...item} 
         />
+        {admin && <button className="delete" onClick={() => handleDelete(item.id)}>Delete</button>}
+        </div>
+        
     )
 })
 

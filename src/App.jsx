@@ -18,7 +18,7 @@ function App() {
                         <React.Fragment>
                             <Navbar/>
                             <Hero />
-                            <Cards />
+                            <Cards  admin={false}/>
                         </React.Fragment>
                     } />
                     <Route path="/details/:id" element={

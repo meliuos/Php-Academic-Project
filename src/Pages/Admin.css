@@ -1,29 +1,27 @@
 .containerAdmin {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  flex-direction:row;
-  height: 100dvh;
-}
-.containerAdmin .options{
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    gap: 30px;
+  }
+  
+  .containerAdmin .options {
+    flex: 0 0 auto; 
+    width: 200px; 
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-.containerAdmin .options button {
+  }
+  
+  .containerAdmin .options button {
     background-color: white;
     padding: 10px;
     cursor: pointer;
-    margin: 20px;
     border: 1px solid black;
-}
-.containerAdmin .content{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    flex-direction: column;
-    height: 100vh;
-    width: 50%;
-}
+    height: 50px;
+    margin: 10px;
+  }
+  
+  .containerAdmin .content {
+    flex: 1 1 auto;
+    overflow-x: auto;
+  }
+  .containerAdmin .content input {
+    width: 300px;
+  }
+  

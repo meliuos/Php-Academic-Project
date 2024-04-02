@@ -40,7 +40,7 @@ export default function Navbar() {
         <div className='log-in-out'>
           {!auth && <SignInPopup onLoginSuccess={handleLoginSuccess}/>}
           {!auth && <SignUpForm />}
-          {admin && <Link to="/admin"><button className="in">Manage users</button></Link>}
+          {admin && <Link to="/admin"><button className="in">Admin Dashboard</button></Link>}
           {auth && <Link to="/dashboard"><button className="in">Manage your posts</button></Link>  }
           {auth && <button className="up" onClick={handleLogout}>Logout</button>}
         </div>  

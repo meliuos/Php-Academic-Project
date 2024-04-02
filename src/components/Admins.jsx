@@ -1,12 +1,18 @@
 import React from "react";
 import "./Users.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Admins() {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
+    const resetForm = () => {  
+        setFormData({
+            email: '',
+            password: ''
+        });
+    };
     const [response, setResponse] = useState(''); 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -29,16 +35,14 @@ export default function Admins() {
             const data = await response.json();
             if(data.success){
                 alert("Added an admin successfully");
+                setResponse("");
+                resetForm();
             }
             else if(data.error){
-                alert("Error adding admin");
+                setResponse("Error adding admin");
             }
             else {
-                alert("Admin already exists");
-                setFormData({
-                    email: '',
-                    password: ''
-                });
+                setResponse("Admin already exists");
             }
         } catch (error) {
             console.error('Error adding admin:', error);
@@ -59,8 +63,8 @@ export default function Admins() {
                     <input type="password" name="password" value={formData.password} onChange={handleChange} required />
                 </div>
                 <button type="submit">Sign Up</button>
-            </form>
-            {}
+                {response && (<p className="response">{response}</p>)}
+            </form>    
         </div>
     );
 }
