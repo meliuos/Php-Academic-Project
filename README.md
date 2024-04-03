@@ -12,8 +12,8 @@ RentAway est une plateforme en ligne permettant aux utilisateurs de louer des lo
 - Tableau de Bord d'Administration : Les propriétaires de logements peuvent gérer leurs annonces, les disponibilités, les tarifs et les réservations via un tableau de bord intuitif.
 - La possibilité de contacter le site via email les propriétaires de logements
 ## For testing :
-1-Import the rentaway database
-2-admin testing : 
+-Import the rentaway database
+-admin testing : 
 Login with =>  mootez.souilem@gmail.com;21055271aa
-3-User testing :
+-User testing :
 Login with =>user@gmail.com;user
